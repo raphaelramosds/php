@@ -1,8 +1,4 @@
-# Concepts
-
-Below some concepts that are not so trivial to understand
-
-## Comparisons
+# Comparisons
 
 PHP adopts 1 as true, and a empty string "" as false. On this context, there are two type of equality comparisons between variables: loose and strict
 
