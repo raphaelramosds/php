@@ -51,6 +51,20 @@ if (isset($_POST['submit'])) {
             $errors['ingredients'] = 'Ingredients must be a comma separated list <br />';
         }
     }
+
+    // Check if there is any error last
+
+    // Method array_filter loops over all elements. 
+
+    // If there are only empty string, it will return false
+
+    if (array_filter($errors)) {
+        // echo 'Errors in the form';
+
+    } else {
+        // echo 'Form is valid. Redirecting user...';
+        header('Location: index.php');
+    }
 }
 ?>
 
