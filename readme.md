@@ -1,6 +1,10 @@
 # Learning PHP
 
+## Overview 
+
 Here you can find some code examples for fixing PHP concepts
+
+## Tips
 
 In order to run a PHP script called `run-me.php`, you can just type
 
@@ -16,3 +20,13 @@ php -S localhost:<port>
 ```
 
 where `port` is the port you want to run your server
+
+## Syllabus
+
+These notes are organized as follow
+
+[1. PHP Fundamentals](./Fundamentals/)
+
+[2. PHP Objects Oriented](./OO/)
+
+[3. PHP Hard Concepts](./Hard%20concepts/)
