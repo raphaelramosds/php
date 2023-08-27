@@ -1,5 +1,7 @@
 <?php
 
+include "config/db_connect.php";
+
 // Persist data
 $email = $title = $ingredients = '';
 
@@ -60,10 +62,21 @@ if (isset($_POST['submit'])) {
 
     if (array_filter($errors)) {
         // echo 'Errors in the form';
-
     } else {
-        // echo 'Form is valid. Redirecting user...';
-        header('Location: index.php');
+        // Add data to database
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $title = mysqli_real_escape_string($conn, $_POST['title']);
+
+        // Escape SQL malicious queries
+        $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+
+        $query = "INSERT INTO pizzas(title, email, ingredients) VALUES ('$title', '$email', '$ingredients')";
+
+        if (mysqli_query($conn, $query)) {
+            header('Location: index.php');
+        } else {
+            echo 'Query error: ' . mysqli_error($conn);
+        }
     }
 }
 ?>

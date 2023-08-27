@@ -1,20 +1,6 @@
 <?php
 
-// One might connect to databases using MySQLi or PDO (recommended)
-
-// Connect to database
-define('HOST', 'localhost');
-define('USER', 'shaun');
-define('PASSWORD', '1234');
-define('DATABASE', 'ninja_pizza');
-
-// Connection
-
-$conn = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
-
-if (!$conn):
-    echo "Connection error: " . mysqli_connect_error();
-endif;
+include "config/db_connect.php";
 
 // GET pizzas query
 $sql = 'SELECT title, ingredients, id FROM pizzas ORDER BY created_at';
@@ -31,8 +17,6 @@ mysqli_free_result($result);
 // Close connection
 mysqli_close($conn);
 
-// print_r($pizzas);
-
 ?>
 
 <!DOCTYPE html>
@@ -47,11 +31,19 @@ mysqli_close($conn);
             <div class="col s6 md3">
                 <div class="card z-depth-0">
                     <div class="card-content center">
+                        <!-- Pizza title -->
                         <h6><?php echo htmlspecialchars($pizza['title']); ?></h6>
-                        <div><?php echo htmlspecialchars($pizza['ingredients']); ?></div>
+                        <!-- Ingredients list -->
+                        <div>
+                            <ul>
+                                <?php foreach (explode(',', $pizza['ingredients']) as $ingredient) : ?>
+                                    <li><?php echo htmlspecialchars($ingredient)?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
                     </div>
                     <div class="card-action right-align">
-                        <a href="#" class="brand-text">More info</a>
+                        <a href="details.php?id=<?php echo $pizza['id']?>" class="brand-text">More info</a>
                     </div>
                 </div>
             </div>
